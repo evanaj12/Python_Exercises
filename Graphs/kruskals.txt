@@ -1,0 +1,39 @@
+      copy=self.getAdjMat()
+      nVerts=len(self.Vertices)
+
+      # sorts edge list in ascending order of weight
+      sortedEdges=sorted (self.getEdges())
+      span=[]
+      doubles=[]
+      tree=Graph()
+
+      # removes doubles from list (when from->to==to->from)
+      for i in range (len(sortedEdges)):
+        trial=sortedEdges[i]
+        trial[1],trial[2]=trial[2],trial[1]
+        if sortedEdges.count(trial)>1:
+          doubles.append(trial)
+
+      for i in range (len(doubles)):
+        sortedEdges.remove(doubles[i])
+
+      # creates new graph that is the min-cost-spanning tree
+      for i in range (nVerts):
+        tree.addVertex(self.Vertices[i].label)
+        
+      for i in range (len(sortedEdges)):
+        tree.addUndirectedEdge(self.getIndex(sortedEdges[i][1]),\
+                self.getIndex(sortedEdges[i][2]),sortedEdges[i][0])
+        
+        
+
+        
+        print ()
+        print ()
+          
+      for i in range (len(tree.Vertices)):
+        fromV=tree.Vertices[i].label
+        toV=tree.Vertices[i].label
+        #span.append (str(fromV)+' - '+str(toV))
+
+      #return span
